@@ -20,19 +20,19 @@ public class FormNutricionista extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtnombrecliente = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtapellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtdnicliente = new javax.swing.JTextField();
+        txtdni = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txttelefonocliente = new javax.swing.JTextField();
+        txttelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtemailcliente = new javax.swing.JTextField();
+        txtemail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtdireccioncliente = new javax.swing.JTextField();
+        txtdireccion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtfecharegistrocliente = new javax.swing.JTextField();
+        txtfecharegistro = new javax.swing.JTextField();
         btnlimpiarcampos = new javax.swing.JButton();
         btninsertar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,13 +79,13 @@ public class FormNutricionista extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txttelefonocliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -95,17 +95,17 @@ public class FormNutricionista extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4)
                                 .addGap(33, 33, 33)
-                                .addComponent(txtdnicliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtemailcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtdireccioncliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtfecharegistrocliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtfecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(197, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,21 +114,21 @@ public class FormNutricionista extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtdnicliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txttelefonocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(txtemailcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtdireccioncliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(txtfecharegistrocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnlimpiarcampos)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -155,6 +155,11 @@ public class FormNutricionista extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbclientes);
 
         btnmodificar.setText("MODIFICAR");
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
 
         btnestadocliente.setText("ACTIVAR/DESACTIVAR");
 
@@ -212,14 +217,13 @@ public class FormNutricionista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void inicializarCampos(){
-        campos = Arrays.asList(
-            txtnombrecliente,
+        campos = Arrays.asList(txtnombre,
             txtapellido,
-            txtdnicliente,
-            txttelefonocliente,
-            txtemailcliente,
-            txtdireccioncliente,
-            txtfecharegistrocliente
+            txtdni,
+            txttelefono,
+            txtemail,
+            txtdireccion,
+            txtfecharegistro
         );
     }
     
@@ -236,6 +240,25 @@ public class FormNutricionista extends javax.swing.JFrame {
     private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed
         BottonController.limpiarCampos(campos);
     }//GEN-LAST:event_btnlimpiarcamposActionPerformed
+
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        int fila = tbclientes.getSelectedRow();
+        
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar.");
+            return;
+        }
+        
+        String Nombre = txtnombre.getText().trim();
+        String Apellido = txtapellido.getText().trim();
+        String DNI = txtdni.getText().trim();
+        String Telefono = txttelefono.getText().trim();
+        String Email = txtemail.getText().trim();
+        String Direccion = txtdireccion.getText().trim();
+        String FechaRegistro = txtfecharegistro.getText().trim();
+        
+        BottonController.modificarNutricionista(tbclientes, WIDTH, Nombre, Apellido, DNI, Telefono, Email, Direccion, FechaRegistro);
+    }//GEN-LAST:event_btnmodificarActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -262,11 +285,11 @@ public class FormNutricionista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbclientes;
     private javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtdireccioncliente;
-    private javax.swing.JTextField txtdnicliente;
-    private javax.swing.JTextField txtemailcliente;
-    private javax.swing.JTextField txtfecharegistrocliente;
-    private javax.swing.JTextField txtnombrecliente;
-    private javax.swing.JTextField txttelefonocliente;
+    private javax.swing.JTextField txtdireccion;
+    private javax.swing.JTextField txtdni;
+    private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtfecharegistro;
+    private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 }
