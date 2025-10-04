@@ -237,6 +237,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="LIMPIAR CAMPOS"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnlimpiarcamposActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -325,6 +328,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="INSERTAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btninsertarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnmodificar">
       <Properties>

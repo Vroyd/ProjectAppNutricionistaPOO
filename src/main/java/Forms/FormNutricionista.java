@@ -242,9 +242,9 @@ public class FormNutricionista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlimpiarcamposActionPerformed
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-        int fila = tbclientes.getSelectedRow();
+        int tabla = tbclientes.getSelectedRow();
         
-        if(fila==-1){
+        if(tabla==-1){
             JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar.");
             return;
         }
