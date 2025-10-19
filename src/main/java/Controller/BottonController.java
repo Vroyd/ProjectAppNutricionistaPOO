@@ -39,7 +39,7 @@ public class BottonController {
             tabla.setValueAt(Telefono, fila, 3);
             tabla.setValueAt(Email, fila, 4);
             tabla.setValueAt(Direccion, fila, 5);
-            tabla.setValueAt(FechaRegistro, fila, 5);
+            tabla.setValueAt(FechaRegistro, fila, 6);
         }
     
     }
