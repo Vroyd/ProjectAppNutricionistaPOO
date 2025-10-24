@@ -1,20 +1,18 @@
 package Entities;
 
-import java.sql.Timestamp;
-
 public class PlanAlimentacion{
     int idPlan;
     Nutricionista nutricionista;
     Cliente cliente;
     String nombre;
     String descripcion;
-    Timestamp fechaCreacion;
+    String fechaCreacion;
     boolean activo;
     
     public PlanAlimentacion(){
     }
 
-    public PlanAlimentacion(int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion, Timestamp fechaCreacion, boolean activo) {
+    public PlanAlimentacion(int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion, String fechaCreacion, boolean activo) {
         this.idPlan = idPlan;
         this.nutricionista = nutricionista;
         this.cliente = cliente;
@@ -22,6 +20,16 @@ public class PlanAlimentacion{
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.activo = activo;
+    }
+    
+    public boolean validarDatos() {
+        return validarTextoNoVacio(nombre) &&
+               validarTextoNoVacio(fechaCreacion) &&
+               validarTextoNoVacio(descripcion);
+    }
+    
+    protected boolean validarTextoNoVacio(String texto) {
+        return texto != null && !texto.trim().isEmpty();
     }
 
     public int getIdPlan() {
@@ -54,10 +62,10 @@ public class PlanAlimentacion{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Timestamp getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
-    public void setFechaCreacion(Timestamp fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
     public boolean isActivo() {

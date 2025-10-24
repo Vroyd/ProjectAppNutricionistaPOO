@@ -1,6 +1,8 @@
 package Forms;
 
 import Controller.BottonController;
+import Entities.Cliente;
+import Utils.CargarDatosClientes;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JTextField;
@@ -268,7 +270,10 @@ public class FormClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnvolverActionPerformed
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
-        BottonController.insertarEnTabla(tbclientes, campos);
+        Cliente cliente = CargarDatosClientes.cargarYValidarDatos(campos);
+        if (cliente != null) {
+            BottonController.insertarEnTabla(tbclientes, campos);
+        }
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed
@@ -276,30 +281,6 @@ public class FormClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnlimpiarcamposActionPerformed
                                                                                   
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormClientes().setVisible(true);

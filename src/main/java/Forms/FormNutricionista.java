@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.*;
 import Controller.BottonController;
+import Entities.Nutricionista;
+import Utils.CargarDatosNutricionista;
+import static java.awt.image.ImageObserver.WIDTH;
 
 public class FormNutricionista extends javax.swing.JFrame {
     
@@ -217,7 +220,8 @@ public class FormNutricionista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void inicializarCampos(){
-        campos = Arrays.asList(txtnombre,
+        campos = Arrays.asList(
+            txtnombre,
             txtapellido,
             txtdni,
             txttelefono,
@@ -234,7 +238,10 @@ public class FormNutricionista extends javax.swing.JFrame {
     }//GEN-LAST:event_btninsertar1ActionPerformed
 
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
-        BottonController.insertarEnTabla(tbclientes, campos);
+        Nutricionista nutricionista = CargarDatosNutricionista.cargarYValidarDatos(campos);
+        if (nutricionista != null) {
+            BottonController.insertarEnTabla(tbclientes, campos);
+        }
     }//GEN-LAST:event_btninsertarActionPerformed
 
     private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed

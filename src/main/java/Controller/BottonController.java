@@ -42,8 +42,5 @@ public class BottonController {
             tabla.setValueAt(FechaRegistro, fila, 5);
         }
     
-    }
-    
-    
-    
+    }  
 }

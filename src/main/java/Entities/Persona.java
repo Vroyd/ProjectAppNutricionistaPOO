@@ -20,8 +20,35 @@ public class Persona {
         this.telefono = telefono;
         this.dni = dni;
         this.activo = activo;
-    }   
+    }
+    
+    public boolean validarDatos() {
+        return validarTextoNoVacio(nombre) &&
+               validarTextoNoVacio(apellido) &&
+               validarTextoNoVacio(email) &&
+               validarTextoNoVacio(telefono) &&
+               validarTextoNoVacio(dni);
+    }
 
+    protected boolean validarTextoNoVacio(String texto) {
+        return texto != null && !texto.trim().isEmpty();
+    }
+
+    protected boolean validarEmail(String email) {
+        if (!validarTextoNoVacio(email)) return false;
+        return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+    }
+
+    protected boolean validarTelefono(String telefono) {
+        if (!validarTextoNoVacio(telefono)) return false;
+        return telefono.matches("\\d{8,15}");
+    }
+
+    protected boolean validarDNI(String dni) {
+        if (!validarTextoNoVacio(dni)) return false;
+        return dni.matches("\\d{8}");
+    }
+   
     public int getId() {
         return id;
     }
