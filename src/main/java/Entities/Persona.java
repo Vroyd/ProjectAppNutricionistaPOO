@@ -12,8 +12,13 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
     
+    @Column(nullable = false)
     protected String nombre;
+    
+    @Column(nullable = false)
     protected String apellido;
+    
+    
     protected String email;
     protected String telefono;
     protected String dni;

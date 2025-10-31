@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
-    <persistence-unit name="NutricionPU">
+    <persistence-unit name="NutricionPU" transaction-type="RESOURCE_LOCAL">
+        
+        <!-- Entidades registradas -->
         <class>Entities.Persona</class>
         <class>Entities.Cliente</class>
         <class>Entities.Nutricionista</class>
         <class>Entities.PlanAlimentacion</class>
+
         <properties>
+            <!-- Configuración de conexión -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/NutricionDB"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3308/NutricionDB?serverTimezone=UTC"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="3306"/>
-            
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- Dialecto compatible con MySQL y MariaDB -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+
+            <!-- Opciones de Hibernate -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+
+            <!-- Desactiva logs de conexión interna -->
+            <property name="hibernate.connection.provider_disables_autocommit" value="true"/>
+
         </properties>
     </persistence-unit>
 </persistence>
