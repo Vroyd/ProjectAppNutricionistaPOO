@@ -1,35 +1,34 @@
 package Entities;
 
+import Utils.ValidatorGeneral;
+
 public class PlanAlimentacion{
-    int idPlan;
-    Nutricionista nutricionista;
-    Cliente cliente;
-    String nombre;
-    String descripcion;
-    String fechaCreacion;
-    boolean activo;
+    private int idPlan;
+    private Nutricionista nutricionista;
+    private Cliente cliente;
+    private String nombre;
+    private String descripcion;
+    private String fechaCreacion;
+    private boolean activo;
+    private DietaCliente dietaCliente;
+
     
     public PlanAlimentacion(){
     }
 
-    public PlanAlimentacion(int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion, String fechaCreacion, boolean activo) {
+    public PlanAlimentacion(Persona persona, int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion, String fechaCreacion, boolean activo) {
         this.idPlan = idPlan;
         this.nutricionista = nutricionista;
         this.cliente = cliente;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
-        this.activo = activo;
+        this.activo = persona.isActivo();
     }
     
     public boolean validarDatos() {
-        return validarTextoNoVacio(nombre) &&
-               validarTextoNoVacio(fechaCreacion) &&
-               validarTextoNoVacio(descripcion);
-    }
-    
-    protected boolean validarTextoNoVacio(String texto) {
-        return texto != null && !texto.trim().isEmpty();
+        return ValidatorGeneral.validarNombre(nombre)&&
+        ValidatorGeneral.validarFormatoFecha(fechaCreacion);
     }
 
     public int getIdPlan() {
@@ -74,7 +73,12 @@ public class PlanAlimentacion{
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
-    
-    
+
+    public DietaCliente getDietaCliente() {
+        return dietaCliente;
+    }
+
+    public void setDietaCliente(DietaCliente dietaCliente) {
+        this.dietaCliente = dietaCliente;
+    }
 }
