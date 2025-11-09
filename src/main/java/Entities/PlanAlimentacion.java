@@ -1,35 +1,40 @@
 package Entities;
 
+import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "PlanAlimentacion")
-
-public class PlanAlimentacion{
+public class PlanAlimentacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idPlan;
+    private int idPlan;
     
     @ManyToOne
-    @JoinColumn(name = "idNutricionista", nullable = false)            
-    Nutricionista nutricionista;
+    @JoinColumn(name = "id_nutricionista")
+    private Nutricionista nutricionista;
     
     @ManyToOne
-    @JoinColumn(name = "idCliente", nullable = false)
-    Cliente cliente;
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
     
+    private String nombre;
+    private String descripcion;
     
-    String nombre;
-    String descripcion;
-    Timestamp fechaCreacion;
-    boolean activo;
+    @Column(name = "fechaCreacion")
+    private String fechaCreacion;
     
-    public PlanAlimentacion(){
+    private boolean activo;
+    
+    @OneToOne(mappedBy = "planAlimentacion", cascade = CascadeType.ALL)
+    private DietaCliente dietaCliente;
+    
+    public PlanAlimentacion() {
     }
 
-    public PlanAlimentacion(int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion, Timestamp fechaCreacion, boolean activo) {
+    public PlanAlimentacion(int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, 
+                           String descripcion, String fechaCreacion, boolean activo) {
         this.idPlan = idPlan;
         this.nutricionista = nutricionista;
         this.cliente = cliente;
@@ -38,7 +43,13 @@ public class PlanAlimentacion{
         this.fechaCreacion = fechaCreacion;
         this.activo = activo;
     }
+    
+    public boolean validarDatos() {
+        return ValidatorGeneral.validarNombre(nombre) &&
+               ValidatorGeneral.validarFormatoFecha(fechaCreacion);
+    }
 
+    // Getters y Setters
     public int getIdPlan() {
         return idPlan;
     }
@@ -69,10 +80,10 @@ public class PlanAlimentacion{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Timestamp getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
-    public void setFechaCreacion(Timestamp fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
     public boolean isActivo() {
@@ -81,7 +92,10 @@ public class PlanAlimentacion{
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
-    
-    
+    public DietaCliente getDietaCliente() {
+        return dietaCliente;
+    }
+    public void setDietaCliente(DietaCliente dietaCliente) {
+        this.dietaCliente = dietaCliente;
+    }
 }

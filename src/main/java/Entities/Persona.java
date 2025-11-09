@@ -1,11 +1,11 @@
 package Entities;
 
+import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Persona")
-
 public class Persona {
     
     @Id
@@ -18,25 +18,33 @@ public class Persona {
     @Column(nullable = false)
     protected String apellido;
     
-    
     protected String email;
     protected String telefono;
     protected String dni;
+    protected String fecha;
     protected boolean activo;
     
     public Persona() {
     }
 
-    public Persona(int id, String nombre, String apellido, String email, String telefono, String dni, boolean activo) {
+    public Persona(int id, String nombre, String apellido, String email, String telefono, String dni, String fecha, boolean activo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
         this.dni = dni;
+        this.fecha = fecha;
         this.activo = activo;
-    }   
-
+    }
+    
+    public boolean validarDatos() {
+        return ValidatorGeneral.validarNombre(nombre) &&
+               ValidatorGeneral.validarApellido(apellido) &&
+               ValidatorGeneral.validarEmail(email) &&
+               ValidatorGeneral.validarFormatoFecha(fecha);
+    }
+   
     public int getId() {
         return id;
     }
@@ -67,13 +75,17 @@ public class Persona {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
     public String getDni() {
         return dni;
     }
-
     public void setDni(String dni) {
         this.dni = dni;
+    }
+    public String getFecha() {
+        return fecha;
+    }
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
     public boolean isActivo() {
         return activo;

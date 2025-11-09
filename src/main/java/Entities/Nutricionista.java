@@ -1,11 +1,12 @@
 package Entities;
 
+import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Nutricionista")
-@PrimaryKeyJoinColumn(name = "id") // Hereda la PK de Persona
+@PrimaryKeyJoinColumn(name = "id")
 public class Nutricionista extends Persona {
 
     private String direccion;
@@ -16,14 +17,18 @@ public class Nutricionista extends Persona {
     public Nutricionista() {    
     }
 
-    public Nutricionista(int id, String nombre, String apellido, String email, String telefono, String dni, boolean activo,
-                         String direccion, Timestamp fechaRegistro) {
-        super(id, nombre, apellido, email, telefono, dni, activo);
+    public Nutricionista(int id, String nombre, String apellido, String email, String telefono, String dni, 
+                        String fecha, boolean activo, String direccion, Timestamp fechaRegistro) {
+        super(id, nombre, apellido, email, telefono, dni, fecha, activo);
         this.direccion = direccion;
         this.fechaRegistro = fechaRegistro;
     }
-
-    // ===== Getters y Setters =====
+    
+    @Override
+    public boolean validarDatos() {
+        return super.validarDatos() &&
+               ValidatorGeneral.validarDir(direccion);
+    }
 
     public String getDireccion() {
         return direccion;

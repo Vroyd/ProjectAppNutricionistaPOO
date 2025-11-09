@@ -1,5 +1,6 @@
 package Entities;
 
+import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 
@@ -16,10 +17,17 @@ public class Cliente extends Persona {
     public Cliente() {
     }
 
-    public Cliente(String direccion, Timestamp fechaRegistro, int id, String nombre, String apellido, String email, String telefono, String dni, boolean activo) {
-        super(id, nombre, apellido, email, telefono, dni, activo);
+    public Cliente(int id, String nombre, String apellido, String email, String telefono, String dni, 
+                   String fecha, boolean activo, String direccion, Timestamp fechaRegistro) {
+        super(id, nombre, apellido, email, telefono, dni, fecha, activo);
         this.direccion = direccion;
         this.fechaRegistro = fechaRegistro;
+    }
+    
+    @Override
+    public boolean validarDatos() {
+        return super.validarDatos() &&
+               ValidatorGeneral.validarDir(direccion);
     }
 
     public String getDireccion() {
