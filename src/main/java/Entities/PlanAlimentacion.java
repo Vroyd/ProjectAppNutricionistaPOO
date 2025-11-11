@@ -1,6 +1,7 @@
 package Entities;
 
 import Utils.ValidatorGeneral;
+<<<<<<< HEAD
 
 public class PlanAlimentacion{
     private int idPlan;
@@ -17,12 +18,49 @@ public class PlanAlimentacion{
     }
 
     public PlanAlimentacion(Persona persona, int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion, String fechaCreacion, boolean activo) {
+=======
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "PlanAlimentacion")
+public class PlanAlimentacion {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPlan;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_nutricionista")
+    private Nutricionista nutricionista;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+    
+    private String nombre;
+    private String descripcion;
+    
+    @Column(name = "fechaCreacion")
+    private String fechaCreacion;
+    
+    private boolean activo;
+    
+    @OneToOne(mappedBy = "planAlimentacion", cascade = CascadeType.ALL)
+    private DietaCliente dietaCliente;
+    
+    public PlanAlimentacion() {
+    }
+
+    public PlanAlimentacion(int idPlan, Nutricionista nutricionista, Cliente cliente, String nombre, 
+                           String descripcion, String fechaCreacion, boolean activo) {
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a
         this.idPlan = idPlan;
         this.nutricionista = nutricionista;
         this.cliente = cliente;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
+<<<<<<< HEAD
         this.activo = persona.isActivo();
     }
     
@@ -35,6 +73,17 @@ public class PlanAlimentacion{
 =======
     // Getters y Setters
 >>>>>>> Stashed changes
+=======
+        this.activo = activo;
+    }
+    
+    public boolean validarDatos() {
+        return ValidatorGeneral.validarNombre(nombre) &&
+               ValidatorGeneral.validarFormatoFecha(fechaCreacion);
+    }
+
+    // Getters y Setters
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a
     public int getIdPlan() {
         return idPlan;
     }
@@ -77,6 +126,7 @@ public class PlanAlimentacion{
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+<<<<<<< HEAD
 
     public DietaCliente getDietaCliente() {
         return dietaCliente;
@@ -86,3 +136,12 @@ public class PlanAlimentacion{
         this.dietaCliente = dietaCliente;
     }
 }
+=======
+    public DietaCliente getDietaCliente() {
+        return dietaCliente;
+    }
+    public void setDietaCliente(DietaCliente dietaCliente) {
+        this.dietaCliente = dietaCliente;
+    }
+}
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a

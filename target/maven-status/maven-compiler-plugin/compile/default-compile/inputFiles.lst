@@ -8,15 +8,22 @@ C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\DAO\GenericDAO.j
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\DAO\NutricionistaDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\DAO\PlanAlimentacionDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\Cliente.java
+<<<<<<< HEAD
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\DietaCliente.java
+=======
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\Nutricionista.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\Persona.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\PlanAlimentacion.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Forms\FormClientes.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Forms\FormNutricionista.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Forms\FormPlanAlimentacion.java
+<<<<<<< HEAD
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\CargarDatosClientes.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\CargarDatosNutricionista.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\CargarDatosPlanAlimenticio.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\JpaUtil.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\ValidatorGeneral.java
+=======
+C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\JpaUtil.java
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a

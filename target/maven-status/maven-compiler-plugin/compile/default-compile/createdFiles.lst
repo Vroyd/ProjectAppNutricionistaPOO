@@ -1,5 +1,35 @@
+<<<<<<< HEAD
+=======
+Forms\FormPlanAlimentacion.class
+Forms\FormClientes$9.class
+AppNutri\AppNutri$1.class
+Forms\FormNutricionista$2.class
+Forms\FormNutricionista$4.class
+Controller\CargarDatosNutricionistas.class
+Forms\FormClientes$10.class
+Forms\FormNutricionista$7.class
+Forms\FormPlanAlimentacion$2.class
+Forms\FormClientes$4.class
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a
 AppNutri\AppNutri.class
+Forms\FormNutricionista$6.class
+Controller\CargarDatosClientes.class
+Forms\FormClientes$1.class
+DAO\NutricionistaDAO.class
+Forms\FormNutricionista$1.class
+Entities\Persona.class
+Forms\FormClientes$6.class
+Forms\FormNutricionista.class
+Forms\FormNutricionista$3.class
+DAO\GenericDAO.class
+DAO\PlanAlimentacionDAO.class
+Forms\FormClientes$3.class
+Entities\Cliente.class
+Forms\FormNutricionista$8.class
+Forms\FormClientes$8.class
+Forms\FormClientes.class
 Controller\BottonController.class
+<<<<<<< HEAD
 Controller\CargarDatosClientes.class
 DAO\GenericDAO.class
 AppNutri\AppNutri$1.class
@@ -9,3 +39,15 @@ Controller\CargarDatosNutricionistas.class
 DAO\NutricionistaDAO.class
 Entities\Persona.class
 DAO\ClienteDAO.class
+=======
+Forms\FormPlanAlimentacion$1.class
+Utils\JpaUtil.class
+Controller\CargarDatosPlanes.class
+Entities\Nutricionista.class
+Forms\FormClientes$5.class
+Entities\PlanAlimentacion.class
+Forms\FormClientes$7.class
+DAO\ClienteDAO.class
+Forms\FormClientes$2.class
+Forms\FormNutricionista$5.class
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a

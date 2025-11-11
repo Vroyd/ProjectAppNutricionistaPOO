@@ -17,6 +17,15 @@ public class DietaCliente {
         this.ingrediente = ingrediente;
         this.cantidad = Cantidad;
     }
+<<<<<<< HEAD
+=======
+    
+    public boolean validarDatos(){
+        return ValidatorGeneral.validarNombre(nombre) &&
+               ValidatorGeneral.validarTextoNoVacio(ingrediente) &&
+               ValidatorGeneral.validarTextoNoVacio(cantidad);
+    }
+>>>>>>> a7bfe15d75b2364c879fa03ac26c6d92c990af2a
 
     public int getIdDietaCliente() {
         return idDietaCliente;
