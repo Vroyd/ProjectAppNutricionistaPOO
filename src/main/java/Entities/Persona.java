@@ -26,6 +26,7 @@ public class Persona {
         this.activo = activo;
     }
     
+<<<<<<< Updated upstream
     public boolean validarDatos() {
         return ValidatorGeneral.validarNombre(nombre) &&
                ValidatorGeneral.validarApellido(apellido) &&
@@ -35,6 +36,8 @@ public class Persona {
                ValidatorGeneral.validarDNI(dni);
     }
    
+=======
+>>>>>>> Stashed changes
     public int getId() {
         return id;
     }

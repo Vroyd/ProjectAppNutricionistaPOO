@@ -26,11 +26,15 @@ public class PlanAlimentacion{
         this.activo = persona.isActivo();
     }
     
+<<<<<<< Updated upstream
     public boolean validarDatos() {
         return ValidatorGeneral.validarNombre(nombre)&&
         ValidatorGeneral.validarFormatoFecha(fechaCreacion);
     }
 
+=======
+    // Getters y Setters
+>>>>>>> Stashed changes
     public int getIdPlan() {
         return idPlan;
     }

@@ -1,0 +1,11 @@
+AppNutri\AppNutri.class
+Controller\BottonController.class
+Controller\CargarDatosClientes.class
+DAO\GenericDAO.class
+AppNutri\AppNutri$1.class
+Entities\Nutricionista.class
+Entities\Cliente.class
+Controller\CargarDatosNutricionistas.class
+DAO\NutricionistaDAO.class
+Entities\Persona.class
+DAO\ClienteDAO.class

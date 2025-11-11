@@ -5,8 +5,15 @@ import Utils.ValidatorGeneral;
 public class Nutricionista extends Persona {
     private String direccion;
 
+<<<<<<< Updated upstream
     public Nutricionista() {    
         super();
+=======
+    @Column(name = "fechaRegistro")
+    private Timestamp fechaRegistro;
+
+public Nutricionista() {    
+>>>>>>> Stashed changes
     }
 
     public Nutricionista(int id, String nombre, String apellido, String email, int telefono, 
@@ -15,12 +22,15 @@ public class Nutricionista extends Persona {
         this.direccion = direccion;
     }
     
+<<<<<<< Updated upstream
     @Override
     public boolean validarDatos() {
         return super.validarDatos() &&
         ValidatorGeneral.validarDir(direccion);
     }
     
+=======
+>>>>>>> Stashed changes
     public String getDireccion() {
         return direccion;
     }
