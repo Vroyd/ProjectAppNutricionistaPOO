@@ -1,6 +1,5 @@
 package Entities;
 
-import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
 
 @Entity
@@ -44,11 +43,6 @@ public class PlanAlimentacion {
         this.activo = activo;
     }
     
-    public boolean validarDatos() {
-        return ValidatorGeneral.validarNombre(nombre) &&
-               ValidatorGeneral.validarFormatoFecha(fechaCreacion);
-    }
-
     // Getters y Setters
     public int getIdPlan() {
         return idPlan;

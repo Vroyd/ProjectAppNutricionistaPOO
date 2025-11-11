@@ -1,6 +1,5 @@
 package Entities;
 
-import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 
@@ -22,12 +21,6 @@ public class Nutricionista extends Persona {
         super(id, nombre, apellido, email, telefono, dni, fecha, activo);
         this.direccion = direccion;
         this.fechaRegistro = fechaRegistro;
-    }
-    
-    @Override
-    public boolean validarDatos() {
-        return super.validarDatos() &&
-               ValidatorGeneral.validarDir(direccion);
     }
 
     public String getDireccion() {

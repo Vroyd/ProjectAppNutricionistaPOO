@@ -1,6 +1,5 @@
 package Entities;
 
-import Utils.ValidatorGeneral;
 import jakarta.persistence.*;
 
 @Entity
@@ -36,13 +35,6 @@ public class Persona {
         this.dni = dni;
         this.fecha = fecha;
         this.activo = activo;
-    }
-    
-    public boolean validarDatos() {
-        return ValidatorGeneral.validarNombre(nombre) &&
-               ValidatorGeneral.validarApellido(apellido) &&
-               ValidatorGeneral.validarEmail(email) &&
-               ValidatorGeneral.validarFormatoFecha(fecha);
     }
    
     public int getId() {
