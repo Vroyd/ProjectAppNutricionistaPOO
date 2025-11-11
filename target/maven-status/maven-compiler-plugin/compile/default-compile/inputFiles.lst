@@ -8,6 +8,7 @@ C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\DAO\GenericDAO.j
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\DAO\NutricionistaDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\DAO\PlanAlimentacionDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\Cliente.java
+C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\DietaCliente.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\Nutricionista.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\Persona.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Entities\PlanAlimentacion.java
@@ -15,3 +16,4 @@ C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Forms\FormClient
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Forms\FormNutricionista.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Forms\FormPlanAlimentacion.java
 C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\JpaUtil.java
+C:\Users\ASUS\Documents\NetBeansProjects\AppNutri\src\main\java\Utils\ValidatorGeneral.java
