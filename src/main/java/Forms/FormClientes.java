@@ -16,15 +16,16 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class FormClientes extends javax.swing.JFrame {
-
+    
+    /** Controlador que gestiona la lógica de negocio relacionada con los clientes. */
     private Controller.CargarDatosClientes controlador;
 
     public FormClientes() {
         initComponents();
         controlador = new CargarDatosClientes();
-        cargarTablaClientes();
-        txtidcliente.setEditable(false);
-        
+        cargarTablaClientes();  // Carga la tabla con los datos existentes
+        txtidcliente.setEditable(false);    // El ID no puede modificarse manualmente
+        tbclientes.getTableHeader().setReorderingAllowed(false);
     }
 
     /**
@@ -266,29 +267,44 @@ public class FormClientes extends javax.swing.JFrame {
     private void btnalimentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalimentacionActionPerformed
         Forms.FormPlanAlimentacion panelPlanAlimentacion = new Forms.FormPlanAlimentacion();
         panelPlanAlimentacion.setVisible(true);
-        this.dispose();
+        this.dispose();     // Cierra el formulario actual
     }//GEN-LAST:event_btnalimentacionActionPerformed
-
+    
+    /**
+     * Regresa al formulario principal del nutricionista.
+     */
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
         Forms.FormNutricionista panelNutricionista = new Forms.FormNutricionista();
         panelNutricionista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnvolverActionPerformed
-
+    
+    /**
+     * Inserta un nuevo cliente en la base de datos usando los datos ingresados en el formulario.
+     */
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
+        
         String nombre = txtnombrecliente.getText();
         String apellido = txtapellido.getText();
         String email = txtemailcliente.getText();
         String telefono = txttelefonocliente.getText();
         String dni = txtdnicliente.getText();
         String direccion = txtdireccioncliente.getText(); 
+        
+        if(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || telefono.isEmpty() || dni.isEmpty() || direccion.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete los campos vacíos.");
+            return;
+        }
 
         controlador.crearCliente(nombre, apellido, email, telefono, dni, direccion);
 
-        cargarTablaClientes();
-        limpiarCampos();
+        cargarTablaClientes();  // Actualiza la tabla con el nuevo cliente
+        limpiarCampos();    // Limpia los campos del formulario
     }//GEN-LAST:event_btninsertarActionPerformed
-
+    
+    /**
+     * Modifica los datos de un cliente existente, según el ID seleccionado.
+     */
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
         try {
         int id = Integer.parseInt(txtidcliente.getText());
@@ -307,7 +323,10 @@ public class FormClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ID inválido");
         }        
     }//GEN-LAST:event_btnmodificarActionPerformed
-
+    
+    /**
+     * Activa o desactiva el estado de un cliente según la fila seleccionada en la tabla.
+     */
     private void btnestadoclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnestadoclienteActionPerformed
         int fila = tbclientes.getSelectedRow();
 
@@ -330,7 +349,10 @@ public class FormClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al cambiar estado del cliente: " + e.getMessage());
         }
     }//GEN-LAST:event_btnestadoclienteActionPerformed
-
+    
+    /**
+     * Limpia todos los campos de texto del formulario.
+     */
     private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_btnlimpiarcamposActionPerformed
@@ -338,7 +360,10 @@ public class FormClientes extends javax.swing.JFrame {
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         
     }//GEN-LAST:event_jScrollPane1MouseClicked
-
+    
+    /**
+     * Carga los datos de la fila seleccionada en los campos del formulario.
+     */
     private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
         int fila = tbclientes.getSelectedRow();
 
@@ -365,7 +390,10 @@ public class FormClientes extends javax.swing.JFrame {
         if(direccionObj != null) txtdireccioncliente.setText(direccionObj.toString());
     }
     }//GEN-LAST:event_tbclientesMouseClicked
-  
+    
+    /**
+     * Limpia todos los campos de texto del formulario.
+     */
     private void limpiarCampos() {
         txtidcliente.setText("");
         txtnombrecliente.setText("");
@@ -375,7 +403,11 @@ public class FormClientes extends javax.swing.JFrame {
         txtemailcliente.setText("");
         txtdireccioncliente.setText("");
     }
-
+    
+    /**
+     * Carga los datos de los clientes desde el controlador y los muestra en la tabla.
+     * Usa un DefaultTableModel para deshabilitar la edición directa de las celdas.
+     */
     private void cargarTablaClientes() {
     String[] columnas = {
         "ID Cliente", "Nombre", "Apellido", "DNI", "Telefono", "Email", "Dirección", "Fecha Registro", "Estado"

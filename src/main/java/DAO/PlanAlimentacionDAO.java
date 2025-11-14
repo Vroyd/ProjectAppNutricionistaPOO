@@ -33,4 +33,19 @@ public class PlanAlimentacionDAO extends GenericDAO<PlanAlimentacion> {
             em.close();     // Cierra el EntityManager
         }
     }
+    
+    // Metodo para buscar por nombre
+    public PlanAlimentacion buscarPorNombre(String nombre) {
+    EntityManager em = JpaUtil.getEntityManager();
+    try {
+        return em.createQuery("SELECT p FROM PlanAlimentacion p WHERE p.nombre = :nombre", PlanAlimentacion.class)
+                 .setParameter("nombre", nombre)
+                 .getSingleResult();
+    } catch (Exception e) {
+        return null;
+    } finally {
+        em.close();
+    }
+}
+    
 }

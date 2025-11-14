@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormNutricionista extends javax.swing.JFrame {
     
+    /** Controlador encargado de manejar la lógica de los nutricionistas. */
     private CargarDatosNutricionistas controlador;
     
     public FormNutricionista() {
@@ -18,6 +19,7 @@ public class FormNutricionista extends javax.swing.JFrame {
         cargarTablaNutricionistas(); 
         txtid.setEditable(false);
         limpiarCampos();
+        tbclientes.getTableHeader().setReorderingAllowed(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -231,6 +233,10 @@ public class FormNutricionista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Carga los datos de los nutricionistas desde la base de datos en la tabla principal.
+     * Ninguna celda es editable directamente desde la interfaz.
+     */
     private void cargarTablaNutricionistas() {
     String[] columnas = {
         "ID Nutricionista", "Nombre", "Apellido", "DNI", "Telefono", "Email", "Dirección", "Fecha Registro", "Estado"
@@ -261,28 +267,47 @@ public class FormNutricionista extends javax.swing.JFrame {
 }
 
     
+    /**
+     * Abre el formulario de clientes y cierra el formulario actual.
+     */
     private void btninsertar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertar1ActionPerformed
         Forms.FormClientes panelClientes = new Forms.FormClientes();
         panelClientes.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btninsertar1ActionPerformed
-
+    
+    /**
+     * Inserta un nuevo nutricionista con los datos ingresados en los campos.
+     * Luego actualiza la tabla para reflejar los cambios.
+     */
     private void btninsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertarActionPerformed
-         String nombre = txtnombre.getText().trim();
+        String nombre = txtnombre.getText().trim();
         String apellido = txtapellido.getText().trim();
         String dni = txtdni.getText().trim();
         String telefono = txttelefono.getText().trim();
         String email = txtemail.getText().trim();
         String direccion = txtdireccion.getText().trim();
+        
+        if(nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || telefono.isEmpty() || email.isEmpty() || direccion.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete los campos vacíos.");
+            return;
+        }
 
         controlador.crearNutricionista(nombre, apellido, email, telefono, dni, direccion);
         cargarTablaNutricionistas();
     }//GEN-LAST:event_btninsertarActionPerformed
-
+    
+    /**
+     * Limpia todos los campos del formulario para permitir un nuevo ingreso.
+     */
     private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_btnlimpiarcamposActionPerformed
-
+    
+     /**
+     * Modifica los datos de un nutricionista existente.
+     * Requiere que haya un nutricionista seleccionado en la tabla.
+     */
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
         if(txtid.getText().isEmpty()){
         JOptionPane.showMessageDialog(this, "Seleccione un nutricionista");
@@ -296,11 +321,19 @@ public class FormNutricionista extends javax.swing.JFrame {
         String telefono = txttelefono.getText().trim();
         String email = txtemail.getText().trim();
         String direccion = txtdireccion.getText().trim();
+        
+        if(nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || telefono.isEmpty() || email.isEmpty() || direccion.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Complete los campos vacíos.");
+            return;
+        }
 
         controlador.actualizarNutricionista(id, nombre, apellido, email, telefono, dni, direccion);
         cargarTablaNutricionistas();
     }//GEN-LAST:event_btnmodificarActionPerformed
-
+    
+    /**
+     * Cambia el estado (activo/inactivo) del nutricionista seleccionado en la tabla.
+     */
     private void btnestadoclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnestadoclienteActionPerformed
         int fila = tbclientes.getSelectedRow();
         if(fila == -1) return;
@@ -310,7 +343,10 @@ public class FormNutricionista extends javax.swing.JFrame {
         controlador.cambiarEstadoNutricionista(id, !estadoActual);
         cargarTablaNutricionistas();
     }//GEN-LAST:event_btnestadoclienteActionPerformed
-
+    
+    /**
+     * Carga los datos del nutricionista seleccionado en la tabla dentro de los campos de texto.
+     */
     private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
         int fila = tbclientes.getSelectedRow();
 
@@ -338,6 +374,10 @@ public class FormNutricionista extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_tbclientesMouseClicked
     
+    /**
+     * Limpia todos los campos del formulario.
+     * Se utiliza tanto al iniciar el formulario como después de realizar operaciones.
+     */
     private void limpiarCampos() {
         txtid.setText("");
         txtnombre.setText("");

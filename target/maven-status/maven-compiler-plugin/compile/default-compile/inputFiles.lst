@@ -7,11 +7,15 @@ C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Entities\Clien
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Forms\FormPlanAlimentacion.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\AppNutri\AppNutri.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\DAO\GenericDAO.java
+C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Forms\FormDieta.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Entities\Nutricionista.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Controller\CargarDatosClientes.java
+C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Entities\DietaCliente.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Entities\Persona.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\DAO\ClienteDAO.java
-C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Controller\BottonController.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\DAO\PlanAlimentacionDAO.java
+C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\DAO\DietaDAO.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Forms\FormClientes.java
 C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Entities\PlanAlimentacion.java
+C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Validator\ValidatorGeneral.java
+C:\Users\usuar\proyectos\ProjectAppNutricionistaPOO\src\main\java\Controller\CargarDatosDieta.java

@@ -14,7 +14,7 @@ public class AppNutri {
                 // Look & Feel del sistema
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-                // Prueba mínima de conexión (opcional)
+                // Prueba mínima de conexión 
                 try (EntityManager em = JpaUtil.getEntityManager()) {
                     em.createNativeQuery("SELECT 1").getSingleResult();
                     JOptionPane.showMessageDialog(null, "Conexión a la base de datos exitosa!", "Éxito", JOptionPane.INFORMATION_MESSAGE);

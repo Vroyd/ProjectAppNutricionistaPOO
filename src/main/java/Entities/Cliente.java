@@ -1,18 +1,22 @@
-package Entities;
+package Entities;   // Indica que esta clase pertenece al paquete Entities
 
-import jakarta.persistence.*;
-import java.sql.Timestamp;
+import jakarta.persistence.*;   // Importa las anotaciones y clases necesarias para JPA
+import java.sql.Timestamp;      // Importa la clase Timestamp para manejar fecha y hora
 
-@Entity
-@Table(name = "Cliente")
+/**
+ * Entidad que representa a un Cliente del sistema.
+ * Hereda los atributos de la clase Persona y agrega campos específicos del cliente.
+ */
+@Entity     // Indica que esta clase es una entidad JPA (se mapea a una tabla en la BD)
+@Table(name = "Cliente")    // Define el nombre de la tabla correspondiente en la base de datos
 @PrimaryKeyJoinColumn(name = "id") // Hereda la PK de Persona
-public class Cliente extends Persona {
+public class Cliente extends Persona {  // La clase Cliente hereda de Persona
 
-    protected String direccion; // renombramos el atributo
+    protected String direccion; // Dirección del cliente
 
-    @Column(name = "fechaRegistro")
-    protected Timestamp fechaRegistro;
-
+    @Column(name = "fechaRegistro")     // Define el nombre de la columna en la base de datos
+    protected Timestamp fechaRegistro;      // Fecha y hora en que se registró el cliente
+    
     public Cliente() {
     }
 
@@ -21,7 +25,9 @@ public class Cliente extends Persona {
         this.direccion = direccion;
         this.fechaRegistro = fechaRegistro;
     }
-
+    
+    // ====== Métodos Getters y Setters ======
+    
     public String getDireccion() {
         return direccion;
     }

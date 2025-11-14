@@ -1,20 +1,40 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Forms;
 
-/**
- *
- * @author PC
- */
+import Controller.CargarDatosPlanes;
+import DAO.ClienteDAO;
+import DAO.NutricionistaDAO;
+import Entities.Cliente;
+import Entities.Nutricionista;
+import Entities.PlanAlimentacion;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Timestamp;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class FormPlanAlimentacion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormPlanAlimentacion
-     */
+    private final CargarDatosPlanes controlador;
+    private final ClienteDAO clienteDAO;
+    private final NutricionistaDAO nutricionistaDAO;
+    
     public FormPlanAlimentacion() {
         initComponents();
+        
+        controlador = new CargarDatosPlanes();
+        clienteDAO = new ClienteDAO();
+        nutricionistaDAO = new NutricionistaDAO();
+        
+        txtidplan.setEditable(false);
+        txtfecha.setEditable(false);
+        txtareadescripcion.setLineWrap(true);
+        txtareadescripcion.setWrapStyleWord(true);
+        cargarCombos();
+        cargarTablaPlanes();
+        configurarEventosTabla();
+        tbplanalimentacion.getTableHeader().setReorderingAllowed(false);
     }
 
     /**
@@ -30,23 +50,26 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtnombreplan = new javax.swing.JTextField();
+        txtidplan = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtcalorias = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtproteinas = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtcarbohidratos = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtgrasas = new javax.swing.JTextField();
+        txtnombreplan = new javax.swing.JTextField();
+        btnlimpiarcampos = new javax.swing.JButton();
+        comboboxnutricionista = new javax.swing.JComboBox<>();
+        comboboxcliente = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         txtfecha = new javax.swing.JTextField();
-        btnlimpiarcampos = new javax.swing.JButton();
         btnvolver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbplanalimentacion = new javax.swing.JTable();
         btnagregar = new javax.swing.JButton();
         btnmodificar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtareadescripcion = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        btndieta = new javax.swing.JButton();
+        btncambiarestado = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -54,19 +77,26 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nombre Plan:");
+        jLabel1.setText("ID Plan:");
 
-        jLabel3.setText("Calorías:");
+        jLabel3.setText("ID Nutricionista:");
 
-        jLabel4.setText("Proteínas Objetivo:");
+        jLabel4.setText("ID Cliente:");
 
-        jLabel5.setText("Carbohidratos Objetivo:");
-
-        jLabel6.setText("Grasas Objetivo:");
-
-        jLabel7.setText("Fecha:");
+        jLabel5.setText("Nombre:");
 
         btnlimpiarcampos.setText("LIMPIAR CAMPOS");
+        btnlimpiarcampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarcamposActionPerformed(evt);
+            }
+        });
+
+        comboboxnutricionista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        comboboxcliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel7.setText("Fecha:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,34 +104,30 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtnombreplan)
-                    .addComponent(txtgrasas, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtidplan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtfecha)))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnlimpiarcampos, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(comboboxnutricionista, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtproteinas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboboxcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcarbohidratos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)
-                        .addComponent(btnlimpiarcampos, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtnombreplan, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,22 +135,21 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombreplan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidplan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(txtcalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtproteinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(txtcarbohidratos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtgrasas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnlimpiarcampos))
-                .addGap(41, 41, 41))
+                    .addComponent(txtnombreplan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboboxnutricionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboboxcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnlimpiarcampos, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
 
         btnvolver.setText("VOLVER");
@@ -136,20 +161,51 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
 
         tbplanalimentacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID Plan", "ID Cliente", "ID Nutricionista", "Nombre Plan", "Calorias Objetivo", "Proteinas Objetivo", "Grasas Objetivo", "Fecha", "Estado"
+                "ID Plan", "ID Cliente", "ID Nutricionista", "Nombre Plan", "Fecha", "Estado"
             }
         ));
         jScrollPane1.setViewportView(tbplanalimentacion);
 
         btnagregar.setText("AGREGAR");
+        btnagregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregarActionPerformed(evt);
+            }
+        });
 
         btnmodificar.setText("MODIFICAR");
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
+
+        txtareadescripcion.setColumns(20);
+        txtareadescripcion.setRows(5);
+        jScrollPane2.setViewportView(txtareadescripcion);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setText("Descripción:");
+
+        btndieta.setText("DIETA");
+        btndieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndietaActionPerformed(evt);
+            }
+        });
+
+        btncambiarestado.setText("ACTIVAR/DESACTIVAR");
+        btncambiarestado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncambiarestadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,17 +215,23 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnvolver, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(122, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))))
+                            .addComponent(btnmodificar, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(btndieta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btncambiarestado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnvolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2)))
+                        .addContainerGap(251, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,26 +242,267 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btndieta)
+                        .addGap(75, 75, 75)
                         .addComponent(btnagregar)
-                        .addGap(163, 163, 163)
+                        .addGap(75, 75, 75)
                         .addComponent(btnmodificar)
-                        .addGap(101, 101, 101))))
+                        .addGap(79, 79, 79)
+                        .addComponent(btncambiarestado)
+                        .addGap(45, 45, 45))))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    // ======================================================
+    // Cargar datos en los ComboBox de Cliente y Nutricionista
+    // ======================================================
+    private void cargarCombos() {
+        // Limpia todas las opciones previas
+        comboboxcliente.removeAllItems();
+        comboboxnutricionista.removeAllItems();
+        
+        // Cargar lista de clientes desde la BD
+        List<Cliente> clientes = clienteDAO.listarTodos();
+        for (Cliente c : clientes) {
+            comboboxcliente.addItem(c.getId() + " - " + c.getNombre());
+        }
+        
+        // Cargar nutricionistas
+        List<Nutricionista> nutricionistas = nutricionistaDAO.listarTodos();
+        for (Nutricionista n : nutricionistas) {
+            comboboxnutricionista.addItem(n.getId() + " - " + n.getNombre());
+        }
+    }
+    
+    // ======================================================
+    // Cargar tabla de Planes de Alimentación
+    // ======================================================
+    private void cargarTablaPlanes() {
+        DefaultTableModel model = (DefaultTableModel) tbplanalimentacion.getModel();
+        model.setRowCount(0);
+        
+        // Obtener planes desde la BD
+        List<PlanAlimentacion> planes = new DAO.PlanAlimentacionDAO().listarTodos();
+        for (PlanAlimentacion p : planes) {
+            // Por cada plan, agregamos una fila con sus datos
+            model.addRow(new Object[]{
+                p.getIdPlan(),
+                p.getCliente().getNombre(),
+                p.getNutricionista().getNombre(),
+                p.getNombre(),
+                p.getFechaCreacion(),
+                p.isActivo() ? "Activo" : "Inactivo"
+            });
+        }
+        // Evitar que se editen las celdas de la tabla
+        tbplanalimentacion.setDefaultEditor(Object.class, null);
+    }
+    
+    // ======================================================
+    // Configurar evento de clic en la tabla
+    // Al hacer clic en una fila, carga los datos en los campos
+    // ======================================================
+    private void configurarEventosTabla() {
+        tbplanalimentacion.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = tbplanalimentacion.getSelectedRow();
+                if (fila >= 0) {
+                    int idPlan = (int) tbplanalimentacion.getValueAt(fila, 0);
+                    PlanAlimentacion plan = new DAO.PlanAlimentacionDAO().buscarPorId(idPlan);
+                    if (plan != null) {
+                        txtidplan.setText(String.valueOf(plan.getIdPlan()));
+                        txtnombreplan.setText(plan.getNombre());
+                        txtfecha.setText(String.valueOf(plan.getFechaCreacion()));
+                        txtareadescripcion.setText(plan.getDescripcion());
+                        comboboxcliente.setSelectedItem(plan.getCliente().getId() + " - " + plan.getCliente().getNombre());
+                        comboboxnutricionista.setSelectedItem(plan.getNutricionista().getId() + " - " + plan.getNutricionista().getNombre());
+                    }
+                }
+            }
+        });
+    }
+    
+    private void limpiarCampos() {
+        txtidplan.setText("");
+        txtnombreplan.setText("");
+        txtfecha.setText("");
+        txtareadescripcion.setText("");
+        comboboxcliente.setSelectedIndex(-1);
+        comboboxnutricionista.setSelectedIndex(-1);
+    }
+    
     private void btnvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvolverActionPerformed
         Forms.FormClientes panelClientes = new Forms.FormClientes();
         panelClientes.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnvolverActionPerformed
+
+    private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_btnlimpiarcamposActionPerformed
+    
+    // ======================================================
+    // Botón AGREGAR: crea un nuevo plan de alimentación
+    // ======================================================
+    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
+        try {
+            // Validar selección de cliente y nutricionista
+            if (comboboxcliente.getSelectedIndex() < 0 || comboboxnutricionista.getSelectedIndex() < 0) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar cliente y nutricionista.");
+                return;
+            }
+            
+            // Validar nombre del plan
+            String nombre = txtnombreplan.getText().trim();
+            String descripcion = txtareadescripcion.getText().trim();
+
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El nombre del plan no puede estar vacío.");
+                return;
+            }
+
+            // Extraer IDs desde el texto del combo
+            int idCliente = Integer.parseInt(comboboxcliente.getSelectedItem().toString().split(" - ")[0]);
+            int idNutricionista = Integer.parseInt(comboboxnutricionista.getSelectedItem().toString().split(" - ")[0]);
+            
+            // Buscar objetos completos desde BD
+            Cliente cliente = new DAO.ClienteDAO().buscarPorId(idCliente);
+            Nutricionista nutricionista = new DAO.NutricionistaDAO().buscarPorId(idNutricionista);
+            
+            // Crear el plan a través del controlador
+            controlador.crearPlan(nutricionista, cliente, nombre, descripcion);
+
+            JOptionPane.showMessageDialog(this, "Plan creado correctamente.");
+            cargarTablaPlanes();    // Actualiza la tabla
+            limpiarCampos();    // Limpia el formulario
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al crear el plan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnagregarActionPerformed
+
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        try {
+        int filaSeleccionada = tbplanalimentacion.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un plan de la tabla para modificar.");
+            return;
+        }
+
+        String idPlanStr = txtidplan.getText().trim();
+        if (idPlanStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El ID del plan no puede estar vacío.");
+            return;
+        }
+
+        int idPlan = Integer.parseInt(idPlanStr);
+        String nombre = txtnombreplan.getText().trim();
+        String descripcion = txtareadescripcion.getText().trim();
+
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre del plan no puede estar vacío.");
+            return;
+        }
+
+        // Extraer IDs desde los combos
+        int idCliente = Integer.parseInt(comboboxcliente.getSelectedItem().toString().split(" - ")[0]);
+        int idNutricionista = Integer.parseInt(comboboxnutricionista.getSelectedItem().toString().split(" - ")[0]);
+
+        // Buscar las entidades relacionadas
+        Cliente cliente = new ClienteDAO().buscarPorId(idCliente);
+        Nutricionista nutricionista = new NutricionistaDAO().buscarPorId(idNutricionista);
+
+        // Buscar el plan existente
+        DAO.PlanAlimentacionDAO planDAO = new DAO.PlanAlimentacionDAO();
+        PlanAlimentacion planExistente = planDAO.buscarPorId(idPlan);
+
+        if (planExistente == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el plan con ID: " + idPlan);
+            return;
+        }
+
+        // Actualizar los valores
+        planExistente.setNombre(nombre);
+        planExistente.setDescripcion(descripcion);
+        planExistente.setCliente(cliente);
+        planExistente.setNutricionista(nutricionista);
+
+        // Guardar los cambios
+        planDAO.actualizar(planExistente);
+
+        JOptionPane.showMessageDialog(this, "Plan modificado correctamente.");
+        cargarTablaPlanes();
+        limpiarCampos();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al modificar el plan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnmodificarActionPerformed
+
+    private void btncambiarestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncambiarestadoActionPerformed
+        try {
+        int filaSeleccionada = tbplanalimentacion.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un plan de la tabla para cambiar su estado.");
+            return;
+        }
+
+        // Obtener el ID del plan seleccionado
+        int idPlan = Integer.parseInt(tbplanalimentacion.getValueAt(filaSeleccionada, 0).toString());
+        String estadoActualStr = tbplanalimentacion.getValueAt(filaSeleccionada, tbplanalimentacion.getColumnCount() - 1).toString();
+        boolean estadoActual = estadoActualStr.equalsIgnoreCase("Activo");
+
+        // Confirmar la acción con el usuario
+        String nuevoEstadoTexto = estadoActual ? "desactivar" : "activar";
+        int confirmacion = JOptionPane.showConfirmDialog(
+                this,
+                "¿Seguro que desea " + nuevoEstadoTexto + " este plan?",
+                "Confirmar cambio de estado",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacion != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        // Cambiar el estado en la base de datos
+        DAO.PlanAlimentacionDAO dao = new DAO.PlanAlimentacionDAO();
+        dao.cambiarEstado(idPlan, !estadoActual);
+
+        // Refrescar tabla
+        cargarTablaPlanes();
+
+        JOptionPane.showMessageDialog(this, "El plan fue " + (estadoActual ? "desactivado" : "activado") + " correctamente.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al cambiar el estado: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btncambiarestadoActionPerformed
+
+    private void btndietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndietaActionPerformed
+        Forms.FormDieta panelDieta = new Forms.FormDieta();
+        panelDieta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btndietaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,9 +541,13 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btncambiarestado;
+    private javax.swing.JButton btndieta;
     private javax.swing.JButton btnlimpiarcampos;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnvolver;
+    private javax.swing.JComboBox<String> comboboxcliente;
+    private javax.swing.JComboBox<String> comboboxnutricionista;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -250,13 +557,12 @@ public class FormPlanAlimentacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tbplanalimentacion;
-    private javax.swing.JTextField txtcalorias;
-    private javax.swing.JTextField txtcarbohidratos;
+    private javax.swing.JTextArea txtareadescripcion;
     private javax.swing.JTextField txtfecha;
-    private javax.swing.JTextField txtgrasas;
+    private javax.swing.JTextField txtidplan;
     private javax.swing.JTextField txtnombreplan;
-    private javax.swing.JTextField txtproteinas;
     // End of variables declaration//GEN-END:variables
 }

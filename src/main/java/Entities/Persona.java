@@ -1,29 +1,33 @@
-package Entities;
+package Entities;   // Indica que esta clase pertenece al paquete Entities
 
-import jakarta.persistence.*;
+import jakarta.persistence.*;   // Importa las anotaciones necesarias de JPA
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Persona")
+@Entity     // Indica que la clase es una entidad JPA
+@Inheritance(strategy = InheritanceType.JOINED)     // Define el tipo de herencia: cada subclase tendrá su propia tabla unida por la PK
+@Table(name = "Persona")        // Asocia la clase con la tabla "Persona" en la base de datos
 
 public class Persona {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int id;
+    @Id     // Marca el campo como clave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // Indica que el valor del ID será autogenerado por la base de datos (auto-incremental)
+    protected int id;   // Identificador único de la persona
     
-    @Column(nullable = false)
-    protected String nombre;
+    @Column(nullable = false)   // No permite valores nulos en esta columna
+    protected String nombre;    // Nombre de la persona
     
-    @Column(nullable = false)
-    protected String apellido;
+    @Column(nullable = false)   // No permite valores nulos en esta columna
+    protected String apellido;  // Apellido de la persona
     
     
-    protected String email;
-    protected String telefono;
-    protected String dni;
-    protected boolean activo;
+    protected String email;     // Correo electrónico (puede ser nulo)
+    protected String telefono;      // Teléfono de contacto (puede ser nulo)
+    protected String dni;       // Documento Nacional de Identidad
+    protected boolean activo;   // Indica si la persona está activa o no
     
+     /**
+     * Constructor vacío requerido por JPA.
+     * Permite que el framework cree instancias automáticamente al leer desde la base de datos.
+     */
     public Persona() {
     }
 

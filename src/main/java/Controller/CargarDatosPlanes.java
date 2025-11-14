@@ -1,6 +1,6 @@
 package Controller;
 
-import DAO.PlanAlimentacionDAO;     // DAO para manejar persistencia de PlanAlimentacion
+import DAO.PlanAlimentacionDAO;
 import Entities.PlanAlimentacion;
 import Entities.Cliente;
 import Entities.Nutricionista;
@@ -8,16 +8,16 @@ import java.sql.Timestamp;
 
 public class CargarDatosPlanes {
 
-    private PlanAlimentacionDAO planDAO;    // Instancia del DAO para operaciones sobre planes
+    private PlanAlimentacionDAO planDAO;
 
     public CargarDatosPlanes() {
-        planDAO = new PlanAlimentacionDAO();    // Inicializa el DAO
+        planDAO = new PlanAlimentacionDAO();
     }
-    
-    // Método para crear un nuevo plan de alimentación
+
+    // Crear nuevo plan
     public void crearPlan(Nutricionista nutricionista, Cliente cliente, String nombre, String descripcion) {
         try {
-            PlanAlimentacion plan = new PlanAlimentacion(); // Crea un objeto vacío
+            PlanAlimentacion plan = new PlanAlimentacion();
             plan.setNutricionista(nutricionista);
             plan.setCliente(cliente);
             plan.setNombre(nombre);
@@ -25,23 +25,28 @@ public class CargarDatosPlanes {
             plan.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
             plan.setActivo(true);
 
-            planDAO.crear(plan);    // Guarda el plan en la base de datos
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error al crear plan: " + e.getMessage());       // Captura errores de validación
+            planDAO.crear(plan);
+        } catch (Exception e) {
+            System.out.println("Error al crear plan: " + e.getMessage());
         }
     }
-    
-    // Método para actualizar un plan existente
+
+    // Actualizar plan existente
     public void actualizarPlan(PlanAlimentacion plan) {
         try {
-            planDAO.actualizar(plan);       // Actualiza el plan en la base de datos
-        } catch (IllegalArgumentException e) {
+            planDAO.actualizar(plan);
+        } catch (Exception e) {
             System.out.println("Error al actualizar plan: " + e.getMessage());
         }
     }
-    
-    // Método para cambiar el estado activo/desactivado de un plan
+
+    // Cambiar estado (activo/inactivo)
     public void cambiarEstadoPlan(int idPlan, boolean activo) {
-        planDAO.cambiarEstado(idPlan, activo);      // Llama al DAO para modificar el estado
+        planDAO.cambiarEstado(idPlan, activo);
+    }
+
+    // buscar plan por ID
+    public PlanAlimentacion buscarPlanPorId(int idPlan) {
+        return planDAO.buscarPorId(idPlan);
     }
 }
